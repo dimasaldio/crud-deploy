@@ -4,7 +4,6 @@ import { Column } from 'primereact/column'
 import { SplitButton } from 'primereact/splitbutton';
 import { Dialog } from 'primereact/dialog'
 import { Button } from 'primereact/button'
-import { useNavigate } from 'react-router-dom'
 import Form from './Form'
 
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -26,8 +25,6 @@ const App = () => {
     hargaJual: 0,
     stokBarang: 0
   })
-
-  const navigate = useNavigate();
   const handleAdd = () => {
     if (isEdit) {
       const updatedData = items.map((item) => {
@@ -102,12 +99,6 @@ const App = () => {
     }
   }
 
-  const handleLogOut = () => {
-    alert('berhasil Log Out')
-    sessionStorage.removeItem('token')
-    navigate('/')
-  }
-
   return (
     <div>
       <div className="p-4 flex justify-between items-center">
@@ -120,11 +111,6 @@ const App = () => {
           </div>
           <input type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Cari Barang..." onInput={(event) => setGlobalFilter(event.target.value)} />
         </div>
-        <button className="group rounded-2xl h-12 w-48 bg-red-500 font-bold text-lg text-white relative overflow-hidden ml-auto" onClick={handleLogOut}>
-          Log Out
-          <div className="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
-          </div>
-        </button>
       </div>
       <DataTable
         globalFilter={globalFilter}
