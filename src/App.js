@@ -4,6 +4,7 @@ import { Column } from 'primereact/column'
 import { SplitButton } from 'primereact/splitbutton';
 import { Dialog } from 'primereact/dialog'
 import { Button } from 'primereact/button'
+import { useNavigate } from 'react-router-dom'
 import Form from './Form'
 
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -17,6 +18,7 @@ const App = () => {
   const [items, setItems] = useState([])
   const fileInputRef = useRef(null)
   const [selectedFileName, setselectedFileName] = useState('')
+  const navigate = useNavigate()
   const [newItems, setNewItems] = useState({
     id: 0,
     fotoBarang: null,
@@ -97,6 +99,12 @@ const App = () => {
         setVisible(false)
       }
     }
+  }
+
+  const handleLogOut = () => {
+    alert('berhasil Log Out')
+    sessionStorage.removeItem('token')
+    navigate('/')
   }
 
   return (
